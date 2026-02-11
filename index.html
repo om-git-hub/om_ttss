@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="om">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Oromo Syllabifier</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+button {
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+<div class="card">
+
+    <h1>Oromo Syllabifier</h1>
+
+    <!-- textarea -->
+    <textarea id="word" rows="6" placeholder="Jecha galchi...
+Enter tuquun line haaraa qofa uuma"></textarea>
+
+    <div class="row">
+        <button id="go" type="button">Split</button>
+        <button id="clear" type="button">Clear</button>
+    </div>
+
+    <button onclick="playSaga3Audio()" type="button"
+        style="width:100%;margin-top:12px;padding:14px;border-radius:12px;
+        background:#0a7cff;color:white;font-size:17px;font-weight:600;">
+        🔊 Play Saga3 Audio
+    </button>
+
+    <pre id="result"></pre>
+    <pre id="saga1"></pre>
+    <pre id="saga2"></pre>
+    <pre id="saga3"></pre>
+    <pre id="count"></pre>
+
+
+    <textarea id="audioFileNames" rows="5" readonly
+        placeholder="Maqaa file .mp3 asitti mul’ata..."></textarea>
+
+</div>
+
+<script>
+// 🔒 Stop Enter from triggering Split button
+const textarea = document.getElementById("word");
+
+textarea.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        // allow newline
+        e.stopPropagation(); 
+        return;
+    }
+});
+
+// OPTIONAL: Ctrl+Enter = Split
+textarea.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" && e.ctrlKey) {
+        document.getElementById("go").click();
+        e.preventDefault();
+    }
+});
+</script>
+
+<!-- External JS -->
+<script src="result.js"></script>
+<script src="saga1.js"></script>
+<script src="saga2.js"></script>
+<script src="saga3.js"></script>
+<script src="audio.js"></script>
+
+</body>
+</html>
